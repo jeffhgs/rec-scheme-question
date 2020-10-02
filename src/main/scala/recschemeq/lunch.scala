@@ -38,6 +38,8 @@ object OrangeImpl extends ImplFor[Orange, FoodRun] {
   }
 }
 
+// Q: can LunchImpl be implemented using a recursion scheme or similar?
+//    If so, what would it look like?
 class LunchImpl(magic:Magic, lunch:Lunch) extends LunchRun {
   val foods : Seq[FoodRun] =
     lunch.foods.map(f => magic.lookup[Food,FoodRun](f))
