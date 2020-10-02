@@ -39,8 +39,9 @@ object OrangeImpl extends ImplFor[Orange, FoodImpl] {
 }
 
 class MyLunchImpl(magic:Magic, lunch:Lunch) extends LunchImpl {
-  val foods : Seq[FoodImpl] = lunch.foods.map(f => magic.lookup[Food,FoodImpl](f))
-  // throws if any children throw
+  val foods : Seq[FoodImpl] =
+    lunch.foods.map(f => magic.lookup[Food,FoodImpl](f))
+  // initialization throws if any children initialization throws
 
   override def eatAll(): Unit = {
     println(s"Lunch has ${foods.length} foods")
