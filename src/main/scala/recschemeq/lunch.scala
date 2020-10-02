@@ -2,9 +2,6 @@ package recschemeq
 
 import scala.reflect.ClassTag
 
-trait DefinedBy[V] {
-}
-
 trait ImplFor[U,V] {
   //def apply(u:U) : V
   def build(u:U) : V
@@ -29,11 +26,11 @@ case class Bananna(name:String) extends Food
 
 case class Lunch(foods:Seq[Food])
 
-trait FoodImpl extends DefinedBy[Food] {
+trait FoodImpl {
   def eat() : Unit
 }
 
-trait LunchImpl extends DefinedBy[Lunch] {
+trait LunchImpl {
   def eatAll() : Unit
 }
 
