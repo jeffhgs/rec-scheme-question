@@ -17,7 +17,8 @@ class SetSuite extends AnyFunSuite with BeforeAndAfter {
   }*/
 
   before {
-    Init.init()
+    recschemeq.flakyreflection.init("recschemeq")
+    //Init.init()
   }
 
   test("can lookup Orange") {

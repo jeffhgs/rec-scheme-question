@@ -62,6 +62,7 @@ object BanannaImplReg {
 }
 */
 object Init {
+  // This is a hard-coded version of the flakyreflection.init method
   def init(): Unit = {
     DirtyMagic.instance.register[Bananna, FoodImpl](BanannaImpl)
     DirtyMagic.instance.register[Orange, FoodImpl](OrangeImpl)
