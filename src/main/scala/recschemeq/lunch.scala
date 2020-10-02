@@ -18,7 +18,7 @@ trait LunchImpl {
 
 class BanannaImpl(bananna: Bananna) extends FoodImpl {
   override def eat() = {
-    println(s"${bananna.name} was yummy")
+    println(s"${bananna.name} bananna was yummy")
   }
 }
 object BanannaImpl extends ImplFor[Bananna, FoodImpl] {
@@ -29,7 +29,7 @@ object BanannaImpl extends ImplFor[Bananna, FoodImpl] {
 
 class OrangeImpl(orange: Orange) extends FoodImpl {
   override def eat() = {
-    println(s"${orange.name} was yummy")
+    println(s"${orange.name} orange was yummy")
   }
 }
 object OrangeImpl extends ImplFor[Orange, FoodImpl] {
