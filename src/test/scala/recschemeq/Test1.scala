@@ -23,28 +23,28 @@ class SetSuite extends AnyFunSuite with BeforeAndAfter {
 
   test("can lookup Orange") {
     val o1 = Orange("navel")
-    DirtyMagic.instance.lookup[Orange, FoodImpl](o1)
+    DirtyMagic.instance.lookup[Orange, FoodRun](o1)
   }
 
   test("can lookup Bananna") {
     val o1 = Bananna("chiquita")
-    DirtyMagic.instance.lookup[Bananna, FoodImpl](o1)
+    DirtyMagic.instance.lookup[Bananna, FoodRun](o1)
   }
 
   test("can lookup Lunch") {
     val o1 = Lunch(Seq())
-    DirtyMagic.instance.lookup[Lunch, LunchImpl](o1)
+    DirtyMagic.instance.lookup[Lunch, LunchRun](o1)
   }
 
   test("can eat Orange") {
     val o1 = Orange("navel")
-    val o1Run = DirtyMagic.instance.lookup[Orange, FoodImpl](o1)
+    val o1Run = DirtyMagic.instance.lookup[Orange, FoodRun](o1)
     o1Run.eat()
   }
 
   test("can eatAll Lunch") {
     val o1 = Lunch(Seq(Orange("navel"), Bananna("chiquita"), Orange("blood")))
-    val o1Run = DirtyMagic.instance.lookup[Lunch, LunchImpl](o1)
+    val o1Run = DirtyMagic.instance.lookup[Lunch, LunchRun](o1)
     o1Run.eatAll()
   }
 

@@ -8,39 +8,39 @@ case class Bananna(name:String) extends Food
 
 case class Lunch(foods:Seq[Food])
 
-trait FoodImpl {
+trait FoodRun {
   def eat() : Unit
 }
 
-trait LunchImpl {
+trait LunchRun {
   def eatAll() : Unit
 }
 
-class BanannaImpl(bananna: Bananna) extends FoodImpl {
+class BanannaImpl(bananna: Bananna) extends FoodRun {
   override def eat() = {
     println(s"${bananna.name} bananna was yummy")
   }
 }
-object BanannaImpl extends ImplFor[Bananna, FoodImpl] {
-  override def build(u: Bananna): FoodImpl = {
+object BanannaImpl extends ImplFor[Bananna, FoodRun] {
+  override def build(u: Bananna): FoodRun = {
     new BanannaImpl(u)
   }
 }
 
-class OrangeImpl(orange: Orange) extends FoodImpl {
+class OrangeImpl(orange: Orange) extends FoodRun {
   override def eat() = {
     println(s"${orange.name} orange was yummy")
   }
 }
-object OrangeImpl extends ImplFor[Orange, FoodImpl] {
-  override def build(u: Orange): FoodImpl = {
+object OrangeImpl extends ImplFor[Orange, FoodRun] {
+  override def build(u: Orange): FoodRun = {
     new OrangeImpl(u)
   }
 }
 
-class MyLunchImpl(magic:Magic, lunch:Lunch) extends LunchImpl {
-  val foods : Seq[FoodImpl] =
-    lunch.foods.map(f => magic.lookup[Food,FoodImpl](f))
+class LunchImpl(magic:Magic, lunch:Lunch) extends LunchRun {
+  val foods : Seq[FoodRun] =
+    lunch.foods.map(f => magic.lookup[Food,FoodRun](f))
   // initialization throws if any children initialization throws
 
   override def eatAll(): Unit = {
@@ -51,9 +51,9 @@ class MyLunchImpl(magic:Magic, lunch:Lunch) extends LunchImpl {
     println(s"Finished with lunch")
   }
 }
-object MyLunchImpl extends ImplFor[Lunch, LunchImpl] {
-  override def build(u: Lunch): LunchImpl = {
-    new MyLunchImpl(DirtyMagic.instance, u)
+object LunchImpl extends ImplFor[Lunch, LunchRun] {
+  override def build(u: Lunch): LunchRun = {
+    new LunchImpl(DirtyMagic.instance, u)
   }
 }
 /*
@@ -65,9 +65,9 @@ object BanannaImplReg {
 object Init {
   // This is a hard-coded version of the flakyreflection.init method
   def init(): Unit = {
-    DirtyMagic.instance.register[Bananna, FoodImpl](BanannaImpl)
-    DirtyMagic.instance.register[Orange, FoodImpl](OrangeImpl)
-    DirtyMagic.instance.register[Lunch, LunchImpl](MyLunchImpl)
+    DirtyMagic.instance.register[Bananna, FoodRun](BanannaImpl)
+    DirtyMagic.instance.register[Orange, FoodRun](OrangeImpl)
+    DirtyMagic.instance.register[Lunch, LunchRun](LunchImpl)
   }
 }
 
